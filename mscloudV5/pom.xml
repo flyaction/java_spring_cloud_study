@@ -47,19 +47,13 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-            <!-- SpringCloud 2023.0.0 -->
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-dependencies</artifactId>
-                <version>${spring.cloud.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
             <!-- SpringCloud alibaba 2022.0.0.0-RC2 -->
             <dependency>
                 <groupId>com.alibaba.cloud</groupId>
                 <artifactId>spring-cloud-alibaba-dependencies</artifactId>
                 <version>${spring.cloud.alibaba.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
             <!-- SpringBoot集成mybatis-->
             <dependency>
