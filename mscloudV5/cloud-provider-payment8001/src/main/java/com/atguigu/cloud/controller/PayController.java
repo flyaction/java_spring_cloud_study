@@ -3,6 +3,7 @@ package com.atguigu.cloud.controller;
 import com.atguigu.cloud.entities.Pay;
 import com.atguigu.cloud.entities.PayDTO;
 import com.atguigu.cloud.resp.ResultData;
+import com.atguigu.cloud.resp.ReturnCodeEnum;
 import com.atguigu.cloud.service.PayService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -55,6 +56,9 @@ public class PayController
     @GetMapping(value = "/pay/get/{id}")
     @Operation(summary = "按照ID查流水",description = "查询支付流水方法")
     public ResultData<Pay> getById(@PathVariable("id") Integer id){
+        if(id == -4){
+            throw new RuntimeException("id不能是负数");
+        }
         return ResultData.success(payService.getById(id));
     }
 
@@ -63,4 +67,19 @@ public class PayController
     public ResultData<List<Pay>> getAll(){
         return ResultData.success(payService.getAll());
     }
+
+    @GetMapping(value = "/pay/error")
+    public ResultData<Integer> getPayError()
+    {
+        Integer integer = Integer.valueOf(20);
+        try {
+            System.out.println("come in pay error test");
+            int age = 10/0;
+        }catch (Exception e){
+            e.printStackTrace();
+            return ResultData.fail(ReturnCodeEnum.RC500.getCode(),e.getMessage());
+        }
+        return ResultData.success(integer);
+    }
+
 }
