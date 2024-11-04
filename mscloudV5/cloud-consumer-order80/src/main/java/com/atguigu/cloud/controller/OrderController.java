@@ -21,7 +21,7 @@ public class OrderController
     private RestTemplate restTemplate;
 
 
-    @GetMapping(value = "/consumer/pay/add")
+    @GetMapping("/consumer/pay/add")
     public ResultData addOrder(PayDTO payDTO){
 
         return restTemplate.postForObject(PaymentSrv_URL+"/pay/add",payDTO,ResultData.class);
