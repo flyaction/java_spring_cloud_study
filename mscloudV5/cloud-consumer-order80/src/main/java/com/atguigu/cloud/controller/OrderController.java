@@ -1,0 +1,46 @@
+package com.atguigu.cloud.controller;
+
+import com.atguigu.cloud.entities.PayDTO;
+import com.atguigu.cloud.resp.ResultData;
+import jakarta.annotation.Resource;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
+
+/**
+ * @author: action
+ * @create: 2024/11/4 14:04
+ **/
+@RestController
+public class OrderController
+{
+    public static final String PaymentSrv_URL = "http://localhost:8001";
+
+    @Resource
+    private RestTemplate restTemplate;
+
+
+    @GetMapping(value = "/consumer/pay/add")
+    public ResultData addOrder(PayDTO payDTO){
+
+        return restTemplate.postForObject(PaymentSrv_URL+"/pay/add",payDTO,ResultData.class);
+    }
+
+    @DeleteMapping("/pay/del/{id}")
+    public ResultData delOrder(@PathVariable("id") Integer id) {
+        return restTemplate.exchange(PaymentSrv_URL + "/pay/del/" + id, HttpMethod.DELETE, null, ResultData.class).getBody();
+    }
+
+    @PutMapping("/pay/update")
+    public ResultData delOrder(@RequestBody PayDTO payDTO) {
+        return restTemplate.exchange(PaymentSrv_URL + "/pay/update/", HttpMethod.PUT, new HttpEntity<>(payDTO), ResultData.class).getBody();
+    }
+
+    @GetMapping("/consumer/pay/get/{id}")
+    public ResultData getPayInfo(@PathVariable("id") Integer id){
+        return restTemplate.getForObject(PaymentSrv_URL + "/pay/get/"+id, ResultData.class, id);
+    }
+
+
+}
