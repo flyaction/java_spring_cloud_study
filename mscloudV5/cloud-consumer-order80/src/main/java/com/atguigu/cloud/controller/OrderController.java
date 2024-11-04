@@ -27,12 +27,12 @@ public class OrderController
         return restTemplate.postForObject(PaymentSrv_URL+"/pay/add",payDTO,ResultData.class);
     }
 
-    @DeleteMapping("/pay/del/{id}")
+    @DeleteMapping("/consumer/pay/del/{id}")
     public ResultData delOrder(@PathVariable("id") Integer id) {
         return restTemplate.exchange(PaymentSrv_URL + "/pay/del/" + id, HttpMethod.DELETE, null, ResultData.class).getBody();
     }
 
-    @PutMapping("/pay/update")
+    @PutMapping("/consumer/pay/update")
     public ResultData delOrder(@RequestBody PayDTO payDTO) {
         return restTemplate.exchange(PaymentSrv_URL + "/pay/update/", HttpMethod.PUT, new HttpEntity<>(payDTO), ResultData.class).getBody();
     }
