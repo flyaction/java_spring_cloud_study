@@ -28,7 +28,7 @@ public interface PayFeignApi
      * @param id
      * @return
      */
-    @GetMapping(value = "/pay/get{id}")
+    @GetMapping(value = "/pay/get/{id}")
     public ResultData getPayInfo(@PathVariable("id") Integer id);
 
     /**
