@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author: Action
@@ -60,6 +61,14 @@ public class PayController
         if(id == -4){
             throw new RuntimeException("id不能是负数");
         }
+
+        //暂停62s,故意写bug，测试出feign的默认调用超时时间
+        try {
+            TimeUnit.SECONDS.sleep(62);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         return ResultData.success(payService.getById(id));
     }
 
