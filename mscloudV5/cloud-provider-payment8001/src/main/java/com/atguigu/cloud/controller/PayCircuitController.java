@@ -15,16 +15,16 @@ import java.util.concurrent.TimeUnit;
 public class PayCircuitController
 {
     //=========Resilience4j CircuitBreaker 的例子
-//    @GetMapping(value = "/pay/circuit/{id}")
-//    public String myCircuit(@PathVariable("id") Integer id)
-//    {
-//        if(id == -4) throw new RuntimeException("----circuit id 不能负数");
-//
-//        if(id == 9999){
-//            try { TimeUnit.SECONDS.sleep(5); } catch (InterruptedException e) { e.printStackTrace(); }
-//        }
-//        return "Hello, circuit! inputId:  "+id+" \t " + IdUtil.simpleUUID();
-//    }
+    @GetMapping(value = "/pay/circuit/{id}")
+    public String myCircuit(@PathVariable("id") Integer id)
+    {
+        if(id == -4) throw new RuntimeException("----circuit id 不能负数");
+
+        if(id == 9999){
+            try { TimeUnit.SECONDS.sleep(5); } catch (InterruptedException e) { e.printStackTrace(); }
+        }
+        return "Hello, circuit! inputId:  "+id+" \t " + IdUtil.simpleUUID();
+    }
 
     //=========Resilience4j bulkhead 的例子
     @GetMapping(value = "/pay/bulkhead/{id}")
@@ -39,5 +39,15 @@ public class PayCircuitController
 
         return "Hello, bulkhead! inputId:  "+id+" \t " + IdUtil.simpleUUID();
     }
+
+
+    //=========Resilience4j ratelimit 的例子
+    @GetMapping(value = "/pay/ratelimit/{id}")
+    public String myRatelimit(@PathVariable("id") Integer id)
+    {
+        return "Hello, myRatelimit欢迎到来 inputId:  "+id+" \t " + IdUtil.simpleUUID();
+    }
+
+
 
 }
