@@ -12,7 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
  * @author: action
  * @create: 2024/11/13 14:08
  **/
-@FeignClient(value = "cloud-payment-service")
+//@FeignClient(value = "cloud-payment-service")
+@FeignClient(value = "cloud-gateway")
 public interface PayFeignApi
 {
     /**
