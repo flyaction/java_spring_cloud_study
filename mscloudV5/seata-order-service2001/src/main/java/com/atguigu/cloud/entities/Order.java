@@ -6,13 +6,15 @@ import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.io.Serializable;
 
 /**
  * 表名：t_order
 */
 @Table(name = "t_order")
 @ToString
-public class Order {
+public class Order implements Serializable
+{
     @Id
     @GeneratedValue(generator = "JDBC")
     private Long id;

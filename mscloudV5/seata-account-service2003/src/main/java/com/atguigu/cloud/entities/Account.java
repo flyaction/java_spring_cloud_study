@@ -4,12 +4,14 @@ import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.io.Serializable;
 
 /**
  * 表名：t_account
 */
 @Table(name = "t_account")
-public class Account {
+public class Account implements Serializable
+{
     /**
      * id
      */
