@@ -1,5 +1,7 @@
 package com.atguigu.cloud.entities;
 
+import lombok.ToString;
+
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -10,6 +12,7 @@ import java.io.Serializable;
  * 表名：t_storage
 */
 @Table(name = "t_storage")
+@ToString
 public class Storage implements Serializable
 {
     @Id
